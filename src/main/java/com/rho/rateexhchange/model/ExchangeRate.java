@@ -13,7 +13,6 @@ public class ExchangeRate {
     private String currency;
     private BigDecimal rate;
 
-
     public Long getId() {
         return id;
     }
