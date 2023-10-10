@@ -1,6 +1,8 @@
 package com.rho.rateexhchange.controller;
 
 import com.rho.rateexhchange.service.ExchangeRateService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 @RestController
 @RequestMapping("/api")
+@Tag(name = "Exchange Rate API", description = "Service that provides currency exchange rate information and allows users to perform currency conversion operations")
 public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
 
@@ -31,6 +34,9 @@ public class ExchangeRateController {
      * @param to   The target currency code.
      * @return ResponseEntity containing the exchange rate or an error response.
      */
+    @Operation(
+            summary = "Get the exchange rate between two currencies",
+            description = "Get the exchange rate between two currencies specifying them. The response is the rate between the specified currencies.")
     @GetMapping("/exchange-rate")
     public ResponseEntity<Map<String, Object>> getExchangeRate(
             @RequestParam("from") String from,
@@ -57,6 +63,9 @@ public class ExchangeRateController {
      * @param from The base currency code.
      * @return ResponseEntity containing the exchange rates or an error response.
      */
+    @Operation(
+            summary = "Get a list of exchange rates from a currency",
+            description = "Get a list of exchange rates from one currency. The response is a list of rates based on the specified currency.")
     @GetMapping("/rates")
     public ResponseEntity<Map<String, Object>> getExchangeRates(
             @RequestParam("from") String from) {
@@ -83,6 +92,9 @@ public class ExchangeRateController {
      * @param qty  The quantity amount to convert.
      * @return ResponseEntity containing the converted amount or an error response.
      */
+    @Operation(
+            summary = "Convert an amount from one currency to another",
+            description = "Get the converted amount between two currencies. The response is the conversion result of the amount of the base rate specified.")
     @GetMapping("/convert")
     public ResponseEntity<Map<String, Object>> convertCurrency(
             @RequestParam("from") String from,
@@ -112,6 +124,9 @@ public class ExchangeRateController {
      * @param qty          The quantity amount to convert.
      * @return ResponseEntity containing the converted amounts or an error response.
      */
+    @Operation(
+            summary = "Convert an amount from one currency to many",
+            description = "Get a list of the converted amount between a base currency to many. The response is a list of the conversion result of the amount of the base rate specified.")
     @GetMapping("/convert-multiple")
     public ResponseEntity<Map<String, Object>> convertMultipleCurrencies(
             @RequestParam("from") String from,

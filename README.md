@@ -1,6 +1,6 @@
 # Rate Exchange API
 
-The Rate Exchange API is a service that provides currency exchange rate information and allows you to perform currency conversion operations.
+The Rate Exchange API is a service that provides currency exchange rate information and allows user to perform currency conversion operations.
 
 ## Table of Contents
 - [Getting Started](#getting-started)
